@@ -1,0 +1,34 @@
+@charset "ISO-8859-1";
+#logo{
+	height: 4em;
+}
+
+#banner .carousel-inner img{
+	max-height: 72vh;
+	object-fit: fill;
+}
+
+#carousel{
+	position: relative;
+}
+
+#footer{
+	background-color: #007bff;
+	color: white;
+}
+
+#delete-icon{
+	font-size: 25px;
+	color: #28a745;
+	padding-left: 5px;
+	border: none;
+	background-color: white;
+}
+
+#edit-icon{
+	font-size: 25px;
+	color: #2f25b9e1;
+}
+#plus-icon{
+	font-size: 30px;
+}
