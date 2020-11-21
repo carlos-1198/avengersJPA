@@ -73,7 +73,7 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                 <label for="estados">estado</label>
                 	 <select class="form-control" id="estados" name="estados">
             			<c:forEach var="estado" items="${estados}">
-            			<option><c:out value="${estado.descripcion}" /></option>
+            			<option value="${estado.id}"><c:out value="${estado.descripcion}" /></option>
 			            </c:forEach>
        				 </select>
                     <!--<label>estado</label> <input type="text" value="<c:out value='${heroe.estadoBean}' />" class="form-control" name="estado"> -->
@@ -81,9 +81,9 @@ integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28an
                 
                 <fieldset class="form-group">
                 	<label for="generos">genero</label>
-                	 <select class="form-control" id="estados" name="estados">
+                	 <select class="form-control" id="generos" name="generos">
             			<c:forEach var="genero" items="${generos}">
-            			<option value="<c:out value="${genero.id}" />"><c:out value="${genero.descripcion}" /></option>
+            			<option value="${genero.id}"><c:out value="${genero.descripcion}" /></option>
 			            </c:forEach>
        				 </select>
                 </fieldset> 

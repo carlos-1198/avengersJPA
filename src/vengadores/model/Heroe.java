@@ -14,7 +14,7 @@ import java.util.List;
 @NamedQuery(name="Heroe.findAll", query="SELECT h FROM Heroe h")
 public class Heroe implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	@Id
 	private int id;
 

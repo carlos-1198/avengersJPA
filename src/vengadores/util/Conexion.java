@@ -51,10 +51,10 @@ public class Conexion <T>{
 			em.getTransaction().commit();
 			System.out.println("REGISTRO CARGADO");
 		} catch (Exception e) {
-			System.out.println("ERROR EN EL REGISTRO");
+			System.out.println("ERROR EN EL REGISTRO"+e.getMessage());
 		} finally {
-			if(em.getTransaction().isActive())
-			em.getTransaction().rollback();
+			//if(em.getTransaction().isActive())
+			//em.getTransaction().rollback();
 			//em.close();
 		}
 	}
@@ -67,8 +67,8 @@ public class Conexion <T>{
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if(em.getTransaction().isActive())
-			em.getTransaction().rollback();
+			//if(em.getTransaction().isActive())
+			//em.getTransaction().rollback();
 			 //em.close();
 		}
 
@@ -83,8 +83,8 @@ public class Conexion <T>{
 			e.printStackTrace();
 			em.getTransaction().rollback();
 		} finally {
-			if(em.getTransaction().isActive())
-			em.getTransaction().rollback();
+			//if(em.getTransaction().isActive())
+			//em.getTransaction().rollback();
 			// em.close();
 		}
 

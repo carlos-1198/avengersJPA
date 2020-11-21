@@ -24,5 +24,5 @@ implements GenericDao<Heroe>  {
 		List<Genero> generos = this.getEm().createQuery("SELECT g FROM Genero g").getResultList();
 		return generos;
 	}
-
+	
 }

@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.ant.FindLeaksTask;
+
 import vengadores.dao.HeroeDao;
+import vengadores.dao.GeneroDao;
+import vengadores.dao.EstadoDao;
 import vengadores.model.Heroe;
 import vengadores.model.Estado;
 import vengadores.model.Genero;
@@ -20,6 +24,8 @@ public class HeroeController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	HeroeDao dao = new HeroeDao();
+	GeneroDao daoG = new GeneroDao();
+	EstadoDao daoE = new EstadoDao();
 	public HeroeController() {
 		super();
 	}
@@ -87,33 +93,26 @@ public class HeroeController extends HttpServlet{
 
 	public void registrarHeroe(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		Heroe heroe2 = new Heroe();
-		heroe2.setNombre(request.getParameter("nombre"));
-		heroe2.setHeroe(request.getParameter("alias"));
+
+		//if (esValido(request.getParameter("nombre")) && esValido(request.getParameter("alias"))
+				//&& esValido(request.getParameter("estado")) && esValido(request.getParameter("genero"))) {
+		Heroe heroe = new Heroe();
+		Genero genero = daoG.findGenero(request.getParameter("generos"));
+		Estado estado = daoE.findEstado(request.getParameter("estados"));
+		heroe.setNombre(request.getParameter("nombre"));
+		heroe.setHeroe(request.getParameter("alias"));
+		heroe.setGeneroBean(genero);
+		heroe.setEstadoBean(estado);
 		System.out.println(request.getParameter("nombre"));
 		System.out.println(request.getParameter("alias"));
-		System.out.println(request.getParameter("estado"));
-		System.out.println(request.getParameter("genero"));
-		dao.insert(heroe2);
-		if (esValido(request.getParameter("nombre")) && esValido(request.getParameter("alias"))
-				&& esValido(request.getParameter("estado")) && esValido(request.getParameter("genero"))) {
-			Heroe heroe = new Heroe();
-			
-			String nombre = request.getParameter("nombre");
-			String alias = request.getParameter("alias");
-			String estado = request.getParameter("estado");
-			String genero = request.getParameter("genero");
-			
-			heroe.setNombre(nombre);
-			heroe.setHeroe(alias);
-			//heroe.setEstadoBean(estado);
-			//heroe.setGeneroBean(genero);
-			
-			dao.insert(heroe);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
+		System.out.println(request.getParameter("estados"));
+		System.out.println(request.getParameter("generos"));
+		dao.insert(heroe);
+		
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+		//} else {
+			//request.getRequestDispatcher("index.jsp").forward(request, response);
+		//}
 	}
 	
 	
@@ -161,12 +160,12 @@ public class HeroeController extends HttpServlet{
 
 	private void updateHeroe(HttpServletRequest request, HttpServletResponse response) 
 			throws  ServletException, IOException {
-	        Heroe heroe = new Heroe();
-	        heroe.setId(Integer.parseInt(request.getParameter("id")));
+	        Heroe heroe = dao.find(Integer.parseInt(request.getParameter("id")));
+	        heroe.setNombre(request.getParameter("nombre"));
 	        heroe.setHeroe(request.getParameter("alias"));
 	        
 	        dao.update(heroe);
-	        response.sendRedirect("heroeView/listar-heroes.jsp");
+	        response.sendRedirect("index.jsp");
 	    }
 		
 	
