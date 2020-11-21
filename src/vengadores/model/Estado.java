@@ -10,7 +10,8 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Estado.findAll", query="SELECT e FROM Estado e")
+@NamedQueries({@NamedQuery (name="Estado.findAll", query="SELECT e FROM Estado e"),
+@NamedQuery (name="Estado.findByDescripcion", query="SELECT e FROM Estado e where e.descripcion=:descripcion")})
 public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -11,7 +11,7 @@ implements GenericDao<Genero> {
 	}
 	
 	public Genero findGenero(String id) {
-		Genero generos = (Genero)this.getEm().createQuery("SELECT g FROM Genero g where id="+id+"").getSingleResult();
+		Genero generos = (Genero)this.getEm().createQuery("SELECT g FROM Genero g where id="+id).getSingleResult();
 		return generos;
 	}
 }

@@ -97,16 +97,12 @@ public class HeroeController extends HttpServlet{
 		//if (esValido(request.getParameter("nombre")) && esValido(request.getParameter("alias"))
 				//&& esValido(request.getParameter("estado")) && esValido(request.getParameter("genero"))) {
 		Heroe heroe = new Heroe();
-		Genero genero = daoG.findGenero(request.getParameter("generos"));
-		Estado estado = daoE.findEstado(request.getParameter("estados"));
+		Genero genero = daoG.find(request.getParameter("generos"));
+		Estado estado = daoE.find(request.getParameter("estados"));
 		heroe.setNombre(request.getParameter("nombre"));
 		heroe.setHeroe(request.getParameter("alias"));
 		heroe.setGeneroBean(genero);
 		heroe.setEstadoBean(estado);
-		System.out.println(request.getParameter("nombre"));
-		System.out.println(request.getParameter("alias"));
-		System.out.println(request.getParameter("estados"));
-		System.out.println(request.getParameter("generos"));
 		dao.insert(heroe);
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
